@@ -19,10 +19,12 @@ const app = Vue.createApp({
       if (this.userEnteredValue != '') {
         this.goals.push([this.userEnteredValue, false]);
         this.userEnteredValue = '';
+        this.editEnteredValue.push('');
       }
     },
     removeGoal(idx) {
       this.goals.splice(idx, 1);
+      this.editEnteredValue.splice(idx, 1);
     },
     doneGoal(idx) {
       this.goals[idx][1] = !this.goals[idx][1];
