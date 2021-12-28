@@ -30,11 +30,17 @@
       </p>
       <ul v-else>
         <li v-for="(goal, index) in goals" :key="goal">
-          <p :class="{ done: goal[1] }">{{ index+1 }} {{ goal[0] }} <br /></p>
+          <p :class="{ done: goal[1] }">{{ index+1 }}: {{ goal[0] }} <br /></p>
           <button @click="removeGoal(index)">Delete</button>
           <button @click="doneGoal(index)">Done</button>
-          <input type="text" placeholder="write here to edit" />
-          <button>Edit</button>
+          <input
+            type="text"
+            v-model="editEnteredValue[index]"
+            @keydown.enter="editGoal(index)"
+            placeholder="write here to edit"
+            :key="goal"
+          />
+          <button @click="editGoal(index)">Edit</button>
         </li>
       </ul>
     </section>

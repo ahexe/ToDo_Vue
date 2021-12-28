@@ -3,6 +3,7 @@ const app = Vue.createApp({
     return {
       userEnteredValue: '',
       goals: [],
+      editEnteredValue: [],
     };
   },
   computed: {
@@ -24,7 +25,13 @@ const app = Vue.createApp({
       this.goals.splice(idx, 1);
     },
     doneGoal(idx) {
-      this.goals[idx][1] = !this.goals[idx][1]
+      this.goals[idx][1] = !this.goals[idx][1];
+    },
+    editGoal(idx) {
+      if (this.editEnteredValue[idx] != '') {
+        this.goals[idx][0] = this.editEnteredValue[idx];
+        this.editEnteredValue[idx] = '';
+      }
     }
   },
 });
