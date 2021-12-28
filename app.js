@@ -3,7 +3,6 @@ const app = Vue.createApp({
     return {
       userEnteredValue: '',
       goals: [],
-      isDone: []
     };
   },
   computed: {
@@ -17,9 +16,7 @@ const app = Vue.createApp({
   methods: {
     addGoal() {
       if (this.userEnteredValue != '') {
-        this.goals.push(this.userEnteredValue);
-        this.isDone.push(false);
-        // console.log(this.isDone);
+        this.goals.push([this.userEnteredValue, false]);
         this.userEnteredValue = '';
       }
     },
@@ -27,8 +24,7 @@ const app = Vue.createApp({
       this.goals.splice(idx, 1);
     },
     doneGoal(idx) {
-      this.isDone[idx] = !this.isDone[idx];
-      // console.log(this.isDone);
+      this.goals[idx][1] = !this.goals[idx][1]
     }
   },
 });
