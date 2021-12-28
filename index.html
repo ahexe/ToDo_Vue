@@ -29,17 +29,29 @@
         No goals have been added yet - please start adding some!
       </p>
       <ul v-else>
-        <li v-for="(goal, index) in goals" :key="goal">
+        <li
+          v-for="(goal, index) in goals"
+          @click="editOption(index)"
+          :key="goal"
+        >
           <p :class="{ done: goal[1] }">{{ index+1 }}: {{ goal[0] }} <br /></p>
-          <button @click="removeGoal(index)">Delete</button>
-          <button @click="doneGoal(index)">Done</button>
+          <button @click.stop @click="removeGoal(index)">Delete</button>
+          <button @click.stop @click="doneGoal(index)">Done</button>
           <input
+            @click.stop
+            v-show="editOptionValue[index]"
             type="text"
             v-model="editEnteredValue[index]"
             @keydown.enter="editGoal(index)"
             placeholder="write here to edit"
           />
-          <button @click="editGoal(index)">Edit</button>
+          <button
+            @click.stop
+            v-show="editOptionValue[index]"
+            @click="editGoal(index)"
+          >
+            Edit
+          </button>
         </li>
       </ul>
     </section>

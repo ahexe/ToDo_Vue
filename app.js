@@ -4,6 +4,7 @@ const app = Vue.createApp({
       userEnteredValue: '',
       goals: [],
       editEnteredValue: [],
+      editOptionValue: []
     };
   },
   computed: {
@@ -20,11 +21,13 @@ const app = Vue.createApp({
         this.goals.push([this.userEnteredValue, false]);
         this.userEnteredValue = '';
         this.editEnteredValue.push('');
+        this.editOptionValue.push(false);
       }
     },
     removeGoal(idx) {
       this.goals.splice(idx, 1);
       this.editEnteredValue.splice(idx, 1);
+      this.editOptionValue.splice(idx, 1);
     },
     doneGoal(idx) {
       this.goals[idx][1] = !this.goals[idx][1];
@@ -34,6 +37,9 @@ const app = Vue.createApp({
         this.goals[idx][0] = this.editEnteredValue[idx];
         this.editEnteredValue[idx] = '';
       }
+    },
+    editOption(idx) {
+      this.editOptionValue[idx] = !this.editOptionValue[idx];
     }
   },
 });
